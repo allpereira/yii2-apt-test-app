@@ -8,11 +8,30 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'App Produtos ( Gestão )',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'products' => [
+            'class' => 'app\modules\products\ProductModule',
+        ],
+    ],
+    'aliases' => [
+        '@productsUploads' => '@app/uploads/products',
+    ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php:d/m/Y',
+            'datetimeFormat' => 'php:d/m/Y H:i:s',
+            'timeFormat' => 'php:H:i:s',
+            'locale' => 'pt-BR', 
+            'defaultTimeZone' => 'America/Sao_Paulo',
+            'thousandSeparator' => '.',
+            'decimalSeparator' => ',',
+            'currencyCode' => 'BRL',
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],

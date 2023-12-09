@@ -22,6 +22,14 @@ return [
                 'encryption' => 'tls',
             ],
         ],
-
+        'log' => [
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                    'logFile' => '@runtime/logs/app.log',
+                ],
+            ],
+        ],
     ],
 ];
