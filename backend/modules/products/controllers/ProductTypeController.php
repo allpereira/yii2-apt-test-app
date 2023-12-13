@@ -141,7 +141,7 @@ class ProductTypeController extends Controller {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Não foi possível encontrar o tipo de produto.');
     }
 
 }
