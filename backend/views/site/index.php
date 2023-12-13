@@ -14,9 +14,7 @@
                 <h2>Cadastro de Produtos</h2>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                    dolore magna aliqua.</p>
 
                     <p><a class="btn btn-primary" href="/products/product/create"> Cadastar Produto </a></p>
             </div>
@@ -24,11 +22,9 @@
                 <h2>Cadastro de Tipos de Produtos</h2>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                    dolore magna aliqua.</p>
 
-                <p><a class="btn btn-primary" href="http://www.yiiframework.com/forum/"> Cadastar Tipo de Produto </a></p>
+                <p><a class="btn btn-primary" href="/products/product-type/create"> Cadastar Tipo de Produto </a></p>
             </div>
         </div>
 

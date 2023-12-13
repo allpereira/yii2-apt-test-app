@@ -35,8 +35,7 @@ class Product extends \yii\db\ActiveRecord {
             [['code', 'name'], 'required', 'message' => 'O campo {attribute} é obrigatório.'],
             [['product_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductType::class, 'targetAttribute' => ['product_type_id' => 'id']],
             [['file'], 'file', 'skipOnEmpty' => true ],
-            [['file'], 'file', 'extensions' => 'gif, jpg, png, jpeg'],
-            // [['file'], 'file', 'maxSize' => 1024 * 1024],
+            [['file'], 'file', 'extensions' => 'gif, jpg, png, jpeg', 'maxSize' => 1024 * 1024],
         ];
     }
 

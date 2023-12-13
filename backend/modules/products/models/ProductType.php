@@ -20,8 +20,8 @@ class ProductType extends \yii\db\ActiveRecord {
 
     public function rules() {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['name'], 'required', 'message' => 'O campo {attribute} é obrigatório.'],
+            ['name', 'string', 'max' => 100, 'message' => 'O campo {attribute} deve ter menos do que 100 caracteres.'],
         ];
     }
 
