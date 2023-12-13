@@ -1,6 +1,8 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\web\JsExpression;
 ?>
 <div class="product-view">
 
@@ -12,9 +14,9 @@ use yii\widgets\DetailView;
             'class' => 'btn btn-danger',
             'data' => [ 'confirm' => 'Você realmente deseja deletar este item?', 'method' => 'post' ]
             ]) ?>
-        <?= Html::a('Visualizar Produtos Cadastrados', ['/products/product'], ['class' => 'btn btn-secondary']); ?>
+        <?= Html::a('Visualizar Tipos de Produtos Cadastrados', ['/products/product-type'], ['class' => 'btn btn-secondary']); ?>
     </p>
 
-    <?= DetailView::widget([ 'model' => $model, 'attributes' => [ 'id', 'code', 'name', 'file_path', 'product_type_id' ] ]) ?>
+    <?= DetailView::widget([ 'model' => $model, 'attributes' => ['id', 'name' ] ]) ?>
 
 </div>

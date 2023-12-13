@@ -1,5 +1,5 @@
 <?php
-use app\modules\products\models\Product;
+use app\modules\products\models\ProductType;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Cadastrar Produto', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Cadastrar Tipo de Produto', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -20,15 +20,10 @@ use yii\widgets\Pjax;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'code',
             'name',
-            'file_path',
-            'product_type_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Product $model, $key, $index, $column) {
+                'urlCreator' => function ($action, ProductType $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

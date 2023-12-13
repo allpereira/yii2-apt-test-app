@@ -4,7 +4,9 @@ namespace app\modules\products\models;
 
 use Exception;
 use Yii;
+use yii\helpers\FileHelper as YiiFileHelper;
 
+use common\components\FileUtils;
 /**
  * This is the model class for table "product".
  *
@@ -24,7 +26,6 @@ class Product extends \yii\db\ActiveRecord {
         return 'product';
     }
 
-
     public function rules() {
         return [
             [['product_type_id'], 'integer'],
@@ -38,7 +39,6 @@ class Product extends \yii\db\ActiveRecord {
             // [['file'], 'file', 'maxSize' => 1024 * 1024],
         ];
     }
-
 
     public function attributeLabels() {
         return [
@@ -71,6 +71,7 @@ class Product extends \yii\db\ActiveRecord {
 
             $this->file_path = $uploadPath .DIRECTORY_SEPARATOR. $this->file->baseName .'.'. $this->file->extension;
             if($this->file->saveAs($this->file_path)) {
+                Yii::info('Product photo was saved: {$model->name}', 'app\modules\products\controllers\ProductController');
                 $this->save(false);
             }
 
@@ -78,6 +79,31 @@ class Product extends \yii\db\ActiveRecord {
             throw new Exception('Nenhum arquivo foi selecionado.');
         }
 
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeDelete() {
+        
+        if (parent::beforeDelete()) {
+        
+            $productUploadsDir = Yii::getAlias('@productsUploads') .DIRECTORY_SEPARATOR. $this->id;
+            try {
+                FileUtils::deleteDirectory($productUploadsDir);
+                
+                Yii::info('The product directory was removed: ' .$productUploadsDir, 'app\modules\products\models\Product::beforeDelete');
+                
+                return true;
+
+            } catch (\Exception $e) {
+                Yii::error($e->getMessage(), 'app\modules\products\models\Product::beforeDelete');
+                return false;
+            }
+            
+        } else {
+            return false;
+        }
     }
 
 }

@@ -28,7 +28,7 @@ class ProductType extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Nome / Descrição',
         ];
     }
 

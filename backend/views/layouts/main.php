@@ -42,6 +42,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Dashboard', 'url' => ['/site/index']],
         ['label' => 'Produtos', 'url' => ['/products/product/index']],
+        ['label' => 'Tipos de Produtos', 'url' => ['/products/product-type/index']],
     ];
 
     if (Yii::$app->user->isGuest) {

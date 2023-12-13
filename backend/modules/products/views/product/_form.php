@@ -1,7 +1,9 @@
 <?php
 
+use app\modules\products\models\ProductType;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
+use \yii\helpers\ArrayHelper;
 
 /** @var yii\web\View $this */
 /** @var app\modules\products\models\Product $model */
@@ -26,7 +28,7 @@ use yii\bootstrap4\ActiveForm;
             <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'class' => 'form-control',])->hint('Digite o Nome ou Descrição deste Produto') ?>
         </div>
         <div class="col-6">
-            <?= $form->field($model, 'product_type_id')->dropdownList([ 1 => 'item 1',  2 => 'item 2' ], ['prompt'=>'Selecione um Tipo de Produto'])->hint('Selecione um Tipo para este Produto')  ?>
+            <?= $form->field($model, 'product_type_id')->dropDownList(ArrayHelper::map(ProductType::find()->all(), 'id', 'name'), ['prompt'=>'Selecione um Tipo de Produto'])->hint('Selecione um Tipo para este Produto') ?>
         </div>
     </div>
 
@@ -36,7 +38,7 @@ use yii\bootstrap4\ActiveForm;
 
     <div class="row">
         <div class="col-12">
-            <?= $form->field($model, 'file')->fileInput()->hint('Selecione uma Foto deste Produto') ?>
+            <?= $form->field($model, 'file')->fileInput(['multiple' => false])->hint('Selecione uma Foto deste Produto') ?>
         </div>
     </div>
 

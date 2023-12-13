@@ -9,10 +9,10 @@ use yii\web\Controller;
 class DefaultController extends Controller {
     
     /**
-     * Renders the index view for the module
+     * Redirects to the index of the product 
      * @return string
      */
     public function actionIndex() {
-        return $this->render('index');
+        return $this->redirect('products/product/index');
     }
 }

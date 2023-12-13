@@ -41,16 +41,7 @@ return [
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
-            'name' => 'backnd-yii2-apt-test-app',
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
+            'name' => 'backnd-yii2-apt-test-app-session',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

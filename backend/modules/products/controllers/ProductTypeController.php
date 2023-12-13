@@ -3,17 +3,18 @@
 namespace app\modules\products\controllers;
 
 use Yii;
-use app\modules\products\models\Product;
+use app\modules\products\models\ProductType;
 use Exception;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+
 /**
- * ProductController implements the CRUD actions for Product model.
+ * ProductTypeController implements the CRUD actions for ProductType model
  */
-class ProductController extends Controller {
+class ProductTypeController extends Controller {
     public function behaviors() {
         return array_merge(
             parent::behaviors(),
@@ -27,20 +28,21 @@ class ProductController extends Controller {
     }
 
     /**
-     * Lists all Product models.
+     * Lists all ProductType models.
      *
      * @return string
      */
     public function actionIndex() {
-        $this->view->title = 'Listagem de Produto';
-        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
+        $this->view->title = 'Listagem de Tipos de Produtos';
+        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['/products/product']];
+        $this->view->params['breadcrumbs'][] = ['label' => 'Tipos de Produtos', 'url' => ['index']];
         $this->view->params['breadcrumbs'][] = $this->view->title;
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Product::find(),
+            'query' => ProductType::find(),
             'pagination' => [ 'pageSize' => 50 ],
             'sort' => [
-                'defaultOrder' => [ 'code' => SORT_DESC ] 
+                'defaultOrder' => [ 'name' => SORT_DESC ] 
             ],
         
         ]);
@@ -55,8 +57,9 @@ class ProductController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        $this->view->title = 'Visualizar Produto';
-        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
+        $this->view->title = 'Visualizar Tipo de Produto';
+        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['/products/product']];
+        $this->view->params['breadcrumbs'][] = ['label' => 'Tipos de Produtos', 'url' => ['index']];
         $this->view->params['breadcrumbs'][] = $this->view->title;
 
         return $this->render('view', [ 'model' => $this->findModel($id) ]);
@@ -68,25 +71,17 @@ class ProductController extends Controller {
      * @return string|\yii\web\Response
      */
     public function actionCreate() {
-        $model = new Product();
+        $model = new ProductType();
 
-        $this->view->title = 'Cadastrar Produto';
-        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
+        $this->view->title = 'Cadastrar Tipo de Produto';
+        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['/products/product']];
+        $this->view->params['breadcrumbs'][] = ['label' => 'Tipos de Produtos', 'url' => ['index']];
         $this->view->params['breadcrumbs'][] = $this->view->title;
     
         if ($this->request->isPost) {
 
             if ($model->load($this->request->post()) && $model->save()) {
-                Yii::debug('Product record was saved: '.$model->name, 'app\modules\products\controllers\ProductController::actionCreate');
-
-                $model->file = UploadedFile::getInstance($model, 'file');
-
-                try {
-                    $model->checkOnCreate();
-                } catch (Exception $e) {
-                    $model->addError('file', $e->getMessage());
-                }
-                
+                Yii::debug('Product Type record was saved: '.$model->name, 'app\modules\products\controllers\ProductTypeController::actionCreate');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
 
@@ -98,7 +93,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing ProductType model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -107,8 +102,9 @@ class ProductController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        $this->view->title = "Editar Produto: $model->name";
-        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
+        $this->view->title = "Editar Tipo de Produto: $model->name";
+        $this->view->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['/products/product']];
+        $this->view->params['breadcrumbs'][] = ['label' => 'Tipos de Produtos', 'url' => ['index']];
         $this->view->params['breadcrumbs'][]  = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
         $this->view->params['breadcrumbs'][] = 'Editar Produto';
 
@@ -120,7 +116,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing ProductType model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -133,15 +129,15 @@ class ProductController extends Controller {
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the ProductType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Product the loaded model
+     * @return ProductType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne(['id' => $id])) !== null) {
+        if (($model = ProductType::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

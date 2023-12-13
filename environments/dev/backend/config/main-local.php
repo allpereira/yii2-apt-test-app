@@ -5,7 +5,18 @@ $config = [
         'request' => [
             'cookieValidationKey' => 'yii2apttesteappCKSx9GlHHNaHGTQWDlBy5i1sHhjDg',
         ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning', 'info' /*,'trace', 'profile' */ ],
+                    'logFile' => '@runtime/logs/app.log',
+                ],
+            ],
+        ],
     ],
+    
 ];
 
 if (!YII_ENV_TEST) {
